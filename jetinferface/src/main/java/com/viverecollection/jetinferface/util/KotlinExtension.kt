@@ -1,4 +1,4 @@
-package id.co.vivere.util
+package com.viverecollection.jetinferface.util
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone

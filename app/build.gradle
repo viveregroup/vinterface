@@ -41,7 +41,7 @@ android {
 
 dependencies {
 
-    implementation project(':jetinferface')
+    implementation 'com.github.viveregroup:vinterface:0.0.3'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

@@ -30,7 +30,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.viverecollection.jetinferface.R
 import com.viverecollection.jetinferface.data.BaseOption
 import com.viverecollection.jetinferface.data.deleteItem
-import id.co.vivere.util.toashShortly
+import com.viverecollection.jetinferface.util.toashShortly
 import kotlinx.coroutines.launch
 
 /**

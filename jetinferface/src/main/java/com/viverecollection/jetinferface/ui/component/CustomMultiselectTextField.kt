@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.viverecollection.jetinferface.R
-import id.co.vivere.util.toashShortly
+import com.viverecollection.jetinferface.util.toashShortly
 import kotlinx.coroutines.launch
 
 /**

@@ -1,4 +1,4 @@
-package id.co.vivere.util
+package com.viverecollection.jetinferface.util
 
 import android.annotation.SuppressLint
 import android.content.ContentUris
@@ -10,11 +10,6 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 
-
-/**
- * Created by Annas Surdyanto on 12/12/21.
- *
- */
 class FileHandler {
     @SuppressLint("ObsoleteSdkInt")
     @SuppressWarnings("deprecation")

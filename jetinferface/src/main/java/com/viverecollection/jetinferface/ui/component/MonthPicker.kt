@@ -30,7 +30,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.viverecollection.jetinferface.data.Month
 import com.viverecollection.jetinferface.data.fiveYearsAround
 import com.viverecollection.jetinferface.R
-import id.co.vivere.util.separateMonthAndYear
+import com.viverecollection.jetinferface.util.separateMonthAndYear
 
 /**
  * Created by Annas Surdyanto on 09/02/22.

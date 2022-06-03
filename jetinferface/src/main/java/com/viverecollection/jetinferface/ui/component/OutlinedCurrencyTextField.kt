@@ -22,8 +22,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import com.viverecollection.jetinferface.R
-import id.co.vivere.util.toAmount
-import id.co.vivere.util.toIdr
+import com.viverecollection.jetinferface.util.toAmount
+import com.viverecollection.jetinferface.util.toIdr
 
 /**
  * Created by Annas Surdyanto on 13/09/21.

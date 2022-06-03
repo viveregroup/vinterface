@@ -11,8 +11,6 @@ open class BaseOption (
     }
 }
 
-
-
 fun List<BaseOption>.deleteItem(item: BaseOption, onFinish: (List<BaseOption>) -> Unit) {
     val list = this.toMutableList()
     val index = list.indexOf(item)

@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.viverecollection.jetinferface.R
-import id.co.vivere.util.toTime
+import com.viverecollection.jetinferface.util.toTime
 import java.util.*
 
 /**

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.viverecollection.jetinferface.R
-import id.co.vivere.util.toDate
+import com.viverecollection.jetinferface.util.toDate
 import java.text.SimpleDateFormat
 import java.util.*
 

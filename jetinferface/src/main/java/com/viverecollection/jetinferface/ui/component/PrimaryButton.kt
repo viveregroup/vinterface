@@ -24,8 +24,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import id.co.vivere.util.*
 import com.viverecollection.jetinferface.R
+import com.viverecollection.jetinferface.util.*
 
 /**
  * Created by Annas Surdyanto on 07/09/21.

@@ -1,4 +1,4 @@
-package id.co.vivere.ui.theme
+package com.viverecollection.jetinferface.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
