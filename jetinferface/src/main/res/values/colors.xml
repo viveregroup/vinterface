@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#492e25</color>
+    <color name="primaryVariant">#492e25</color>
+    <color name="colorPrimaryDark">#492e25</color>
+    <!--<color name="colorPrimaryDark">#8a4f29</color>-->
+    <color name="colorAccent">#03DAC5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorHint">#808080</color>
+    <color name="unselected">#B6B6B6</color>
+    <color name="colorShadow">#D7F6F5</color>
+
+    <color name="category_1">#1abc9c</color>
+    <color name="category_2">#3498db</color>
+    <color name="category_3">#34495e</color>
+    <color name="category_4">#07feff</color>
+    <color name="category_5">#f1c40f</color>
+    <color name="category_6">#e74c3c</color>
+    <color name="category_7">#ecf0f1</color>
+    <color name="category_8">#16a085</color>
+    <color name="category_9">#f39c12</color>
+    <color name="category_10">#8e44ad</color>
+    <color name="category_11">#2e86de</color>
+    <color name="category_12">#1b1464</color>
+    <color name="category_13">#c4e538</color>
+    <color name="category_14">#833471</color>
+    <color name="category_15">#ed4c67</color>
+</resources>

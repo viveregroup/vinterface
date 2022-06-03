@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AlertDialogLight" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="colorPrimary">@color/category_6</item>
+        <item name="colorPrimaryDark">@color/category_2</item>
+        <item name="android:textColor">@color/category_5</item>
+        <item name="android:buttonBarButtonStyle">@style/LightButton</item>
+    </style>
+
+    <style name="AlertDialogDark" parent="Theme.Material3.Dark.Dialog.Alert">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/design_default_color_on_primary</item>
+        <item name="android:background">@color/cardview_dark_background</item>
+        <item name="android:buttonBarButtonStyle">@style/DarkButton</item>
+    </style>
+
+    <style name="LightButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/cardview_dark_background</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DarkButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/cardview_light_background</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

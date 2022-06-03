@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_title">Oups.. Sorry!</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="remove">Remove</string>
+    <string name="refresh">Refresh</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="default_notification_channel_id">channelID</string>
+    <string name="yes">Yes</string>
+    <string name="save">Save</string>
+    <string name="month">Month</string>
+    <string name="text_copied">Text copied</string>
+    <string name="share_via">Share Via</string>
+    <string name="year">Year</string>
+    <string name="time">Time</string>
+    <string name="okay">OK</string>
+    <string name="no">No</string>
+    <string name="force_update_message">Please update the app to the latest version.</string>
+    <string name="flexible_update_message">Update the app for better performance.</string>
+    <string name="app_update_title">Update Available</string>
+    <string name="update">Update</string>
+    <string name="success">Success</string>
+    <string name="later">Later</string>
+    <string name="default_error_message">Something went wrong</string>
+    <string name="loading_data">Loading data ...</string>
+    <string name="no_data">No data yet</string>
+    <string name="default_date_format">dd-MM-yyyy</string>
+    <string name="selection_maximum_warning">You have selected the maximum selection number</string>
+    <string name="long_description_sample">Cras iaculis hendrerit purus, et gravida quam accumsan sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar ipsum nec ligula faucibus gravida. Cras malesuada metus sed tellus molestie, sed tincidunt ligula sagittis. Etiam nec facilisis metus. Donec pulvinar libero magna, quis aliquam dolor vehicula vel. Nulla et rutrum tortor. Pellentesque ex nisl, sodales in tempor at, dictum quis augue.</string>
+    <string name="long_title_sample">First Banner Sample Having Long Long Long Title Really</string>
+    <string name="search">Search</string>
+</resources>
