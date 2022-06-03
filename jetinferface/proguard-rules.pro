@@ -30,12 +30,6 @@
 -keepattributes Signature
 
 -keepattributes *Annotation*, InnerClasses
--dontnote kotlinx.serialization.SerializationKt
--keep,includedescriptorclasses class id.co.vivere.**$$serializer { *; }
--keepclassmembers class id.co.vivere.** { # <-- change package name to your app's
+-keepclassmembers class com.viverecollection.jetinferface.data.** { # <-- change package name to your app's
     *** Companion;
-}
-
--keepclasseswithmembers class id.co.vivere.* {
-    kotlinx.serialization.KSerializer serializer(...);
 }
