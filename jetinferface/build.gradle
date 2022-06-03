@@ -72,7 +72,7 @@ afterEvaluate{
                 from components.release
 
                 groupId = "com.github.viveregroup"
-                artifactId = "vinterface"
+                artifactId = "vivere-interface"
                 version = "0.0.2"
             }
         }
