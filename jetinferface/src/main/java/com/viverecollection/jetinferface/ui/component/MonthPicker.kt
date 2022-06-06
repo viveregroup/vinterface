@@ -89,7 +89,7 @@ fun MonthPickerView(
                     ConstraintLayout(
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .padding(keyLine3)
+                            .padding(sixteenDp)
                     ) {
                         val (titleRef, monthRef, monthLabelRef, yearLabelRef, valueRef, yearRef, buttonRef) = createRefs()
                         Text(
@@ -150,7 +150,7 @@ fun MonthPickerView(
 
                         BodyText(
                             modifier = Modifier.constrainAs(yearLabelRef) {
-                                top.linkTo(monthRef.bottom, margin = keyLine3)
+                                top.linkTo(monthRef.bottom, margin = sixteenDp)
                                 end.linkTo(parent.end)
                                 start.linkTo(parent.start)
                             },
@@ -159,8 +159,8 @@ fun MonthPickerView(
 
                         LazyRow(modifier = Modifier.constrainAs(yearRef) {
                             top.linkTo(yearLabelRef.bottom)
-                            start.linkTo(parent.start, margin = keyLine3)
-                            end.linkTo(parent.end, margin = keyLine3)
+                            start.linkTo(parent.start, margin = sixteenDp)
+                            end.linkTo(parent.end, margin = sixteenDp)
                         }) {
                             items(yearOptions) {
                                 MonthPickerItem(
@@ -176,7 +176,7 @@ fun MonthPickerView(
                         val value = Month.list.find { it.id == monthSelected.value }?.name
                         BodyTextBold(
                             modifier = Modifier.constrainAs(valueRef) {
-                                top.linkTo(yearRef.bottom, margin = keyLine3)
+                                top.linkTo(yearRef.bottom, margin = sixteenDp)
                                 end.linkTo(parent.end)
                             },
                             text = "Selection: $value ${yearSelected.value}"
@@ -190,7 +190,7 @@ fun MonthPickerView(
                             },
                             modifier = Modifier
                                 .constrainAs(buttonRef) {
-                                    top.linkTo(valueRef.bottom, margin = keyLine3)
+                                    top.linkTo(valueRef.bottom, margin = sixteenDp)
                                 }
                                 .fillMaxWidth()
                         )
@@ -241,7 +241,7 @@ private fun MonthPickerItem(
         modifier = Modifier
             .width(width)
             .clickable(onClick = onClick)
-            .padding(keyLine2),
+            .padding(eightDp),
         textAlign = TextAlign.Center
     )
 }

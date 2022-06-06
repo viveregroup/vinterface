@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.Dp
 @Composable
 fun Spacer(
     modifier: Modifier = Modifier,
-    size: Dp = keyLine2
+    size: Dp = eightDp
 ) {
     Spacer(modifier = modifier.padding(size))
 }

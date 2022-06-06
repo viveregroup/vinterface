@@ -118,7 +118,7 @@ fun MultiselectTextField(
             Row(
                 modifier = Modifier
                     .height(50.dp)
-                    .padding(horizontal = keyLine12)
+                    .padding(horizontal = twelveDp)
             ) {
                 Text(
                     text = if (isMandatory) label.plus("*") else label,
@@ -156,7 +156,7 @@ fun MultiselectTextField(
         }
 
         content()
-        Spacer(size = keyLine1)
+        Spacer(size = fourDp)
         Divider(color = lineColor, thickness = 1.dp, modifier = Modifier.fillMaxWidth())
     }
 }
@@ -238,7 +238,7 @@ fun SelectedRowScopeListView(
     }
 
     LazyRow(
-        modifier = modifier.padding(start = keyLine3)
+        modifier = modifier.padding(start = sixteenDp)
     ) {
         items(selections.value) {
             content(it, onDelete)
@@ -259,7 +259,7 @@ fun SelectedColumnScopeListView(
     }
 
     Column(
-        modifier = modifier.padding(start = keyLine3)
+        modifier = modifier.padding(start = sixteenDp)
     ) {
         selections.value.forEach {
             content(it, onDelete)
@@ -292,7 +292,7 @@ fun DefaultSelectedColumnScope(
                     color = colorResource(id = R.color.colorAccent),
                     shape = RoundedCornerShape(10.dp)
                 )
-                .padding(keyLine2),
+                .padding(eightDp),
             item = selectedItem,
             onDelete = onDelete,
             titleStyle = selectedTitleStyle,
@@ -328,7 +328,7 @@ fun DefaultSelectedRowScope(
                     color = colorResource(id = R.color.colorAccent),
                     shape = RoundedCornerShape(10.dp)
                 )
-                .padding(keyLine2),
+                .padding(eightDp),
             item = selectedItem,
             onDelete = onDelete,
             titleStyle = selectedTitleStyle,
@@ -366,7 +366,7 @@ fun MultiselectItemView(
             text = item.name,
             style = titleStyle
         )
-        Spacer(size = keyLine1)
+        Spacer(size = fourDp)
         Icon(
             imageVector = deleteIcon,
             contentDescription = "delete selection ${item.id}",
@@ -377,7 +377,7 @@ fun MultiselectItemView(
             tint = deleteIconTint,
         )
     }
-    Spacer(size = keyLine0)
+    Spacer(size = twoDp)
 }
 
 @Composable
@@ -410,7 +410,7 @@ fun MultiselectSheet(
             LazyColumn(
                 modifier = Modifier
                     .wrapContentSize()
-                    .padding(keyLine3)
+                    .padding(sixteenDp)
             ) {
                 item {
                     CaptionText(
@@ -448,7 +448,7 @@ fun MultiselectSheet(
                                 )
                                 .background(MaterialTheme.colors.surface)
                         ) {
-                            Column(modifier = Modifier.padding(keyLine12)) {
+                            Column(modifier = Modifier.padding(twelveDp)) {
                                 CaptionText(
                                     text = option.id,
                                     modifier = Modifier.wrapContentWidth()
@@ -505,7 +505,7 @@ fun MultiselectDialogSheet(
                         LazyColumn(
                             modifier = Modifier
                                 .wrapContentSize()
-                                .padding(keyLine3)
+                                .padding(sixteenDp)
                         ) {
                             item {
                                 CaptionText(
@@ -541,8 +541,8 @@ fun MultiselectDialogSheet(
                                                 1.dp,
                                                 Color.LightGray,
                                                 shape = RoundedCornerShape(10.dp)
-                                            )
-                                            .background(MaterialTheme.colors.surface)
+                                            ),
+                                        elevation = 0.dp
                                     ) {
                                         CustomOptionItemView(
                                             title = option.name,

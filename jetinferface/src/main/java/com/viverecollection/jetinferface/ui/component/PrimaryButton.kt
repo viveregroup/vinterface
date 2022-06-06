@@ -175,7 +175,7 @@ fun TrailingIconButton(
         modifier = buttonModifier
             .background(backgroundColor, shape = shape)
             .border(1.dp, borderColor, shape)
-            .padding(keyLine2)
+            .padding(eightDp)
     ) {
         Row(Modifier.align(Alignment.CenterHorizontally)) {
             Text(
@@ -191,7 +191,7 @@ fun TrailingIconButton(
                 contentDescription = label,
                 tint = foregroundColor,
                 modifier = iconModifier
-                    .padding(start = keyLine2)
+                    .padding(start = eightDp)
                     .align(Alignment.CenterVertically)
             )
         }
@@ -222,7 +222,7 @@ fun LeadingIconButton(
         modifier = buttonModifier
             .background(backgroundColor, shape = shape)
             .border(1.dp, borderColor, shape)
-            .padding(keyLine2)
+            .padding(eightDp)
     ) {
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally)

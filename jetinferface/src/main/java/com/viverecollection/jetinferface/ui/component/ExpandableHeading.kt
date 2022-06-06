@@ -29,7 +29,7 @@ fun ExpandableHeading(
     label: String,
     defaultState: Boolean = true,
     arrowColor: Color = Color.Gray,
-    contentMargin: Dp = keyLine2,
+    contentMargin: Dp = eightDp,
     headingStyle: TextStyle = MaterialTheme.typography.h6,
     content: @Composable () -> Unit,
 ) {
@@ -80,7 +80,7 @@ fun ExpandableTitle(
     description: String? = null,
     defaultState: Boolean = true,
     arrowColor: Color = Color.Gray,
-    contentMargin: Dp = keyLine2,
+    contentMargin: Dp = eightDp,
     headingStyle: TextStyle = MaterialTheme.typography.subtitle1,
     descriptionStyle: TextStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.secondary),
     content: @Composable () -> Unit,
@@ -104,7 +104,7 @@ fun ExpandableTitle(
                 style = descriptionStyle,
                 modifier = Modifier.constrainAs(descRef) {
                     top.linkTo(parent.top)
-                    end.linkTo(iconRef.start, margin = keyLine1)
+                    end.linkTo(iconRef.start, margin = fourDp)
                     bottom.linkTo(textRef.bottom)
                 })
         }
@@ -141,7 +141,7 @@ fun ExpandableLabel(
     description: String? = null,
     defaultState: Boolean = true,
     arrowColor: Color = Color.Gray,
-    contentMargin: Dp = keyLine2,
+    contentMargin: Dp = eightDp,
     headingStyle: TextStyle = MaterialTheme.typography.body2,
     descriptionStyle: TextStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.secondary),
     content: @Composable () -> Unit,
@@ -166,7 +166,7 @@ fun ExpandableLabel(
                 style = descriptionStyle,
                 modifier = Modifier.constrainAs(descRef) {
                     top.linkTo(parent.top)
-                    end.linkTo(iconRef.start, margin = keyLine1)
+                    end.linkTo(iconRef.start, margin = fourDp)
                     bottom.linkTo(textRef.bottom)
                 })
         }

@@ -40,7 +40,7 @@ fun AppBrandBar(
             contentDescription = "bar icon",
             modifier = Modifier
                 .align(Alignment.Center)
-                .padding(keyLine2)
+                .padding(eightDp)
                 .height(50.dp),
             contentScale = ContentScale.Fit
         )
@@ -51,7 +51,7 @@ fun AppBrandBar(
                 tint = Color.White,
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
-                    .padding(end = keyLine2)
+                    .padding(end = eightDp)
                     .clickable { onTrailingIconClicked?.let { it() } }
             )
         }

@@ -47,7 +47,7 @@ fun AppBar(
                 tint = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.clickable { onLeadingIconClicked?.let { clicked -> clicked() } }
             )
-            Spacer(modifier = Modifier.size(keyLine2))
+            Spacer(modifier = Modifier.size(eightDp))
         }
         Text(
             modifier = Modifier,

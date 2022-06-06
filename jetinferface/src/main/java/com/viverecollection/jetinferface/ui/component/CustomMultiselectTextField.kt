@@ -107,7 +107,7 @@ fun <T> CustomMultiselectTextField(
             Row(
                 modifier = Modifier
                     .height(50.dp)
-                    .padding(horizontal = keyLine12)
+                    .padding(horizontal = twelveDp)
             ) {
                 Text(
                     text = if (isMandatory) label.plus("*") else label,
@@ -145,7 +145,7 @@ fun <T> CustomMultiselectTextField(
         }
 
         selectedContent()
-        Spacer(size = keyLine1)
+        Spacer(size = fourDp)
         Divider(color = lineColor, thickness = 1.dp, modifier = Modifier.fillMaxWidth())
     }
 }
@@ -264,7 +264,7 @@ fun <T> CustomSelectedColumnScopeListView(
         selections.value.forEach {
             Column(modifier = modifier) {
                 itemContent(it)
-                Spacer(size = keyLine0)
+                Spacer(size = twoDp)
             }
         }
     }
@@ -280,7 +280,7 @@ fun <T> CustomSelectedRowScopeListView(
         LazyRow(modifier = modifier) {
             items(selections.value) {
                 itemContent(it)
-                Spacer(size = keyLine0)
+                Spacer(size = twoDp)
             }
         }
     }
@@ -298,7 +298,7 @@ fun CustomMultiselectItemView(
     deleteIconTint: Color = Color.White,
 ) {
     val scope = rememberCoroutineScope()
-    Row(modifier = modifier.padding(keyLine2)) {
+    Row(modifier = modifier.padding(eightDp)) {
         if (description.isNotEmpty()) {
             Column(modifier = Modifier.align(Alignment.CenterVertically)) {
                 Text(
@@ -315,7 +315,7 @@ fun CustomMultiselectItemView(
             style = titleStyle
         )
         if (onDelete != null) {
-            Spacer(size = keyLine1)
+            Spacer(size = fourDp)
             Icon(
                 imageVector = deleteIcon,
                 contentDescription = "delete selection",
@@ -326,7 +326,7 @@ fun CustomMultiselectItemView(
                 tint = deleteIconTint,
             )
         }
-        Spacer(size = keyLine0)
+        Spacer(size = twoDp)
     }
 }
 
@@ -343,7 +343,7 @@ fun <T> CustomMultiselectItemView(
     deleteIconTint: Color = Color.White,
 ) {
     val scope = rememberCoroutineScope()
-    Row(modifier = modifier.padding(keyLine2)) {
+    Row(modifier = modifier.padding(eightDp)) {
         if (description(type).isNotEmpty()) {
             Column(modifier = Modifier.align(Alignment.CenterVertically)) {
                 Text(
@@ -360,7 +360,7 @@ fun <T> CustomMultiselectItemView(
             style = titleStyle
         )
         if (onDelete != null) {
-            Spacer(size = keyLine1)
+            Spacer(size = fourDp)
             Icon(
                 imageVector = deleteIcon,
                 contentDescription = "delete selection",
@@ -371,7 +371,7 @@ fun <T> CustomMultiselectItemView(
                 tint = deleteIconTint,
             )
         }
-        Spacer(size = keyLine0)
+        Spacer(size = twoDp)
     }
 }
 
@@ -408,7 +408,7 @@ fun <T> CustomMultiselectDialogSheet(
                         LazyColumn(
                             modifier = Modifier
                                 .wrapContentSize()
-                                .padding(keyLine3)
+                                .padding(sixteenDp)
                         ) {
                             item {
                                 CaptionText(
@@ -446,8 +446,8 @@ fun <T> CustomMultiselectDialogSheet(
                                                 1.dp,
                                                 Color.LightGray,
                                                 shape = RoundedCornerShape(10.dp)
-                                            )
-                                            .background(MaterialTheme.colors.surface)
+                                            ),
+                                            elevation = 0.dp
                                     ) {
                                         optionContent(option)
                                     }
@@ -470,7 +470,7 @@ fun CustomOptionItemView(
     optionTitleStyle: TextStyle = MaterialTheme.typography.body2,
     optionDescriptionStyle: TextStyle = MaterialTheme.typography.caption,
 ) {
-    Column(modifier = modifier.padding(keyLine12)) {
+    Column(modifier = modifier.padding(twelveDp)) {
         Text(
             text = title,
             modifier = Modifier.wrapContentWidth(),

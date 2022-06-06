@@ -82,7 +82,7 @@ fun ZoomableImage(
                                 shape = RoundedCornerShape(20.dp)
                             )
                             .fillMaxWidth()
-                            .padding(keyLine3)
+                            .padding(sixteenDp)
                             .verticalScroll(rememberScrollState())
                     ) {
                         title?.let {

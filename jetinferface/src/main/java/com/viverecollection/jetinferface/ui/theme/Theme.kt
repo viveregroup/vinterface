@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun LightTheme(
     content: @Composable () -> Unit,
-    shapes: Shapes = Shapes,
+    shapes: Shapes = Shapes(),
     typography: Typography = Typography,
     colors: Colors = lightColors()
 ) {
@@ -22,7 +22,7 @@ fun LightTheme(
 @Composable
 fun DarkTheme(
     content: @Composable () -> Unit,
-    shapes: Shapes = Shapes,
+    shapes: Shapes = Shapes(),
     typography: Typography = Typography,
     colors: Colors = darkColors()
 ) {
