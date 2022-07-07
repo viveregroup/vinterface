@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -20,11 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.viverecollection.jetinferface.R
 import com.viverecollection.jetinferface.data.BaseOption
 import com.viverecollection.jetinferface.ui.component.*
+import com.viverecollection.jetinferface.util.toashShortly
 import com.viverecollection.vinterface.data.OptionSample
 import com.viverecollection.vinterface.data.deleteItem
 import com.viverecollection.vinterface.data.filterItems
 import id.co.vivere.ui.component.BorderedTextField
-import id.co.vivere.util.toashShortly
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -87,7 +88,7 @@ fun RefreshableScreenTest() {
     ) {
         if (submissionLoading.value) LoadingScreen()
         else {
-            Scaffold(Modifier.padding(keyLine3)) {
+            Scaffold(Modifier.padding(sixteenDp)) {
                 LazyColumn {
                     item {
                         HeadingText(text = "Test Heading Text")
@@ -190,28 +191,37 @@ fun RefreshableScreenTest() {
                         Spacer()
                         CopyButton(
                             label = "Copy",
-                            content = "Copy Test"
+                            content = "Copy Test",
+                            style = MaterialTheme.typography.caption,
+                            iconTint = Color.Blue
                         )
                         Spacer()
                         ShareButton(
                             label = "Share",
-                            content = "Share Test"
+                            content = "Share Test",
+                            style = MaterialTheme.typography.caption,
+                            iconTint = Color.Green
                         )
                         Spacer()
                         EmailAddressButton(
                             modifier = Modifier.fillMaxWidth(),
-                            address = "annas.shawn@gmail.com"
+                            address = "annas.shawn@gmail.com",
+                            style = MaterialTheme.typography.caption,
+                            iconTint = Color.Red
                         )
                         Spacer()
                         PhoneNumberButton(
                             modifier = Modifier.fillMaxWidth(),
-                            phoneNumber = "081291827229"
+                            phoneNumber = "081291827229",
+                            style = MaterialTheme.typography.caption,
+                            iconTint = Color.Yellow
                         )
                         Spacer()
                         DirectUrlButton(
                             modifier = Modifier.fillMaxWidth(),
-                            url = "https:google.com",
-                            label = "Visit Website"
+                            url = "google.com",
+                            label = "Visit Website",
+                            style = MaterialTheme.typography.caption
                         )
                         Spacer()
                     }
@@ -401,7 +411,7 @@ fun RefreshableScreenTest() {
                                                 color = colorResource(id = R.color.category_5),
                                                 shape = RoundedCornerShape(10.dp)
                                             )
-                                            .padding(keyLine2),
+                                            .padding(twentyDp),
                                         item = selectedItem,
                                         onDelete = deleteItem
                                     )
@@ -429,7 +439,7 @@ fun RefreshableScreenTest() {
                                                 color = colorResource(id = R.color.category_11),
                                                 shape = RoundedCornerShape(10.dp)
                                             )
-                                            .padding(keyLine2),
+                                            .padding(twelveDp),
                                         item = selectedItem,
                                         onDelete = deleteItem
                                     )

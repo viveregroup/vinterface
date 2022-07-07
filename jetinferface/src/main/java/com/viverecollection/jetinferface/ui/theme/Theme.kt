@@ -35,8 +35,8 @@ fun DarkTheme(
 }
 
 @Composable
-fun AppTheme(darkModeSupport: Boolean = true, content: @Composable () -> Unit) {
+fun AppTheme(darkTheme: @Composable (() -> Unit)? = null, lightTheme: @Composable () -> Unit) {
     val isDarkTheme = isSystemInDarkTheme()
-    return if (isDarkTheme && darkModeSupport) DarkTheme(content = content)
-    else LightTheme(content = content)
+    return if (isDarkTheme && darkTheme != null) darkTheme()
+    else lightTheme()
 }

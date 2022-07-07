@@ -180,14 +180,19 @@ fun String.sendEmail(context: Context) {
 }
 
 fun String.openUrl(context: Context, toolbarColor: Int = R.color.primary) {
-    val builder = CustomTabsIntent.Builder()
-    val colorInt: Int = context.getColor(toolbarColor)
-    val defaultColors = CustomTabColorSchemeParams.Builder()
-        .setToolbarColor(colorInt)
-        .build()
-    builder.setDefaultColorSchemeParams(defaultColors)
-    val customTabsIntent = builder.build()
-    customTabsIntent.launchUrl(context, Uri.parse(this))
+    kotlin.runCatching {
+        val address = if (!this.contains("http")) "https://$this" else this
+        val builder = CustomTabsIntent.Builder()
+        val colorInt: Int = context.getColor(toolbarColor)
+        val defaultColors = CustomTabColorSchemeParams.Builder()
+            .setToolbarColor(colorInt)
+            .build()
+        builder.setDefaultColorSchemeParams(defaultColors)
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(context, Uri.parse(address))
+    }.onFailure {
+        context.getString(R.string.unable_to_open_address).toashShortly(context = context)
+    }
 }
 
 fun String.sendAsEmail(context: Context, address: String, subject: String) {

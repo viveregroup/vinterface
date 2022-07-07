@@ -1,11 +1,10 @@
 package com.viverecollection.jetinferface.ui.component
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -23,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.viverecollection.jetinferface.R
 import com.viverecollection.jetinferface.util.*
@@ -158,42 +158,40 @@ fun BorderedSecondaryButton(
 @Composable
 fun TrailingIconButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     label: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
+    elevation: Dp = fourDp,
     shape: Shape = RoundedCornerShape(10.dp),
-    onButtonClicked: (() -> Unit)? = null,
-    onIconClicked: (() -> Unit)? = null,
+    onClicked: (() -> Unit)? = null,
 ) {
     val buttonModifier =
-        if (onButtonClicked != null) modifier.clickable(onClick = onButtonClicked)
+        if (onClicked != null) modifier.clickable(onClick = onClicked)
         else modifier
-    Column(
-        modifier = buttonModifier
-            .background(backgroundColor, shape = shape)
-            .border(1.dp, borderColor, shape)
-            .padding(eightDp)
+    Card(
+        modifier = buttonModifier.padding(bottom = eightDp),
+        shape = shape,
+        elevation = elevation
     ) {
-        Row(Modifier.align(Alignment.CenterHorizontally)) {
-            Text(
-                modifier = Modifier.align(Alignment.CenterVertically),
-                text = label,
-                style = style.copy(color = foregroundColor)
-            )
-            val iconModifier =
-                if (onIconClicked != null) Modifier.clickable(onClick = onIconClicked)
-                else Modifier
-            Icon(
-                imageVector = icon,
-                contentDescription = label,
-                tint = foregroundColor,
-                modifier = iconModifier
-                    .padding(start = eightDp)
-                    .align(Alignment.CenterVertically)
-            )
+        Box(
+            modifier = Modifier.padding(eightDp)
+        ) {
+            Row(modifier = Modifier.align(Alignment.Center)) {
+                Text(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    text = label,
+                    style = style
+                )
+                Spacer(size = 4.dp)
+                Icon(
+                    imageVector = icon,
+                    contentDescription = label,
+                    tint = iconTint,
+                    modifier = iconModifier,
+                )
+            }
         }
     }
 }
@@ -201,44 +199,40 @@ fun TrailingIconButton(
 @Composable
 fun LeadingIconButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     label: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector = Icons.Filled.Email,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
-    shape: Shape = RoundedCornerShape(10.dp),
-    onIconClicked: (() -> Unit)? = null,
-    onButtonClicked: (() -> Unit)? = null
+    iconTint: Color = MaterialTheme.colors.primary,
+    shape: Shape = RoundedCornerShape(fourDp),
+    elevation: Dp = fourDp,
+    onClicked: (() -> Unit)? = null
 ) {
     val buttonModifier =
-        if (onButtonClicked != null) modifier.clickable(onClick = onButtonClicked)
+        if (onClicked != null) modifier.clickable(onClick = onClicked)
         else modifier
-
-    val iconModifier =
-        if (onIconClicked != null) Modifier.clickable(onClick = onIconClicked)
-        else Modifier
-    Column(
-        modifier = buttonModifier
-            .background(backgroundColor, shape = shape)
-            .border(1.dp, borderColor, shape)
-            .padding(eightDp)
+    Card(
+        modifier = buttonModifier.padding(bottom = eightDp),
+        shape = shape,
+        elevation = elevation
     ) {
-        Row(
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+        Box(
+            modifier = Modifier.padding(eightDp)
         ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = label,
-                tint = foregroundColor,
-                modifier = iconModifier.align(Alignment.CenterVertically)
-            )
-            Spacer(size = 4.dp)
-            Text(
-                modifier = Modifier.align(Alignment.CenterVertically),
-                text = label,
-                style = style.copy(color = foregroundColor)
-            )
+            Row(modifier = Modifier.align(Alignment.Center)) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = label,
+                    tint = iconTint,
+                    modifier = iconModifier,
+                )
+                Spacer(size = 4.dp)
+                Text(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    text = label,
+                    style = style
+                )
+            }
         }
     }
 }
@@ -246,14 +240,13 @@ fun LeadingIconButton(
 @Composable
 fun CopyButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     label: String,
     content: String,
     style: TextStyle = MaterialTheme.typography.body1,
     message: String = stringResource(id = R.string.text_copied),
     icon: ImageVector = Icons.Filled.ContentCopy,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
     shape: Shape = RoundedCornerShape(10.dp)
 ) {
     val context = LocalContext.current
@@ -262,10 +255,9 @@ fun CopyButton(
         style = style,
         label = label,
         icon = icon,
-        backgroundColor = backgroundColor,
-        foregroundColor = foregroundColor,
-        borderColor = borderColor,
-        shape = shape
+        shape = shape,
+        iconModifier = iconModifier,
+        iconTint = iconTint
     ) {
         content.copyToClipboard(context = context, message)
     }
@@ -275,13 +267,12 @@ fun CopyButton(
 @Composable
 fun ShareButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     label: String,
     content: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector = Icons.Filled.Share,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
     shape: Shape = RoundedCornerShape(10.dp)
 ) {
     val context = LocalContext.current
@@ -290,10 +281,9 @@ fun ShareButton(
         style = style,
         label = label,
         icon = icon,
-        backgroundColor = backgroundColor,
-        foregroundColor = foregroundColor,
-        borderColor = borderColor,
-        shape = shape
+        shape = shape,
+        iconModifier = iconModifier,
+        iconTint = iconTint
     ) {
         content.shareText(context = context)
     }
@@ -302,12 +292,11 @@ fun ShareButton(
 @Composable
 fun EmailAddressButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     address: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector = Icons.Filled.Email,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
     shape: Shape = RoundedCornerShape(10.dp)
 ) {
     val context = LocalContext.current
@@ -316,10 +305,9 @@ fun EmailAddressButton(
         style = style,
         label = address,
         icon = icon,
-        backgroundColor = backgroundColor,
-        foregroundColor = foregroundColor,
-        borderColor = borderColor,
-        shape = shape
+        shape = shape,
+        iconModifier = iconModifier,
+        iconTint = iconTint
     ) {
         address.sendEmail(context)
     }
@@ -329,12 +317,11 @@ fun EmailAddressButton(
 @Composable
 fun PhoneNumberButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     phoneNumber: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector = Icons.Filled.Phone,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
     shape: Shape = RoundedCornerShape(10.dp)
 ) {
     val context = LocalContext.current
@@ -343,10 +330,9 @@ fun PhoneNumberButton(
         style = style,
         label = phoneNumber,
         icon = icon,
-        backgroundColor = backgroundColor,
-        foregroundColor = foregroundColor,
-        borderColor = borderColor,
-        shape = shape
+        shape = shape,
+        iconModifier = iconModifier,
+        iconTint = iconTint
     ) {
         phoneNumber.callPhone(context)
     }
@@ -355,13 +341,12 @@ fun PhoneNumberButton(
 @Composable
 fun DirectUrlButton(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     label: String,
     url: String,
     style: TextStyle = MaterialTheme.typography.body1,
     icon: ImageVector = Icons.Filled.Web,
-    backgroundColor: Color = MaterialTheme.colors.background,
-    foregroundColor: Color = MaterialTheme.colors.onBackground,
-    borderColor: Color = MaterialTheme.colors.secondary,
+    iconTint: Color = MaterialTheme.colors.primary,
     shape: Shape = RoundedCornerShape(10.dp)
 ) {
     val context = LocalContext.current
@@ -370,10 +355,9 @@ fun DirectUrlButton(
         style = style,
         label = label,
         icon = icon,
-        backgroundColor = backgroundColor,
-        foregroundColor = foregroundColor,
-        borderColor = borderColor,
-        shape = shape
+        shape = shape,
+        iconModifier = iconModifier,
+        iconTint = iconTint
     ) {
         url.openUrl(context)
     }

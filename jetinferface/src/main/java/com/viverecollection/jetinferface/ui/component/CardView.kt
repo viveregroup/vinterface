@@ -22,12 +22,14 @@ import androidx.compose.ui.unit.dp
 fun CardView(
     modifier: Modifier = Modifier,
     elevation: Dp = 3.dp,
+    shape: Shape = RoundedCornerShape(fourDp),
     content: @Composable () -> Unit
 ) {
     Card(
         modifier = modifier,
         elevation = elevation,
         content = content,
+        shape = shape
     )
 }
 
