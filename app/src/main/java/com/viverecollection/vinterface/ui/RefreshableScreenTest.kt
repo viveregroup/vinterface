@@ -255,7 +255,7 @@ fun RefreshableScreenTest() {
                                 modifier = Modifier.fillMaxWidth()
                             )
                             Spacer()
-                            CommonTextField(
+                            UnderlinedTextField(
                                 label = "Common Text Field",
                                 state = textField,
                                 isInvalid = textField.value.isEmpty(),

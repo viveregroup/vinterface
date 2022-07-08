@@ -27,7 +27,7 @@ import com.viverecollection.jetinferface.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun CommonTextField(
+fun UnderlinedTextField(
     modifier: Modifier = Modifier,
     label: String,
     state: MutableState<String>? = null,
@@ -49,6 +49,78 @@ fun CommonTextField(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     TextField(
+        value = state?.value ?: "",
+        onValueChange = { state?.value = it },
+        label = {
+            Text(
+                text = if (isMandatory) label.plus("*") else label,
+                style = labelStyle
+            )
+        },
+        placeholder = {
+            Text(
+                text = "Type your ${label.lowercase()}",
+                style = placeholderStyle
+            )
+        },
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = imeAction,
+            keyboardType = inputType
+        ),
+        modifier = modifier,
+        keyboardActions = KeyboardActions(
+            onNext = { focusRequester?.requestFocus() },
+            onDone = {
+                onDone?.invoke()
+                keyboardController?.hide()
+            }
+        ),
+        colors = TextFieldDefaults.textFieldColors(backgroundColor = MaterialTheme.colors.surface),
+        enabled = enabled,
+        trailingIcon = {
+            if (isInvalid && invalidState.value) {
+                Icon(
+                    imageVector = errorIcon,
+                    contentDescription = "error",
+                    tint = iconTint
+                )
+            } else {
+                icon?.let {
+                    Icon(
+                        imageVector = it,
+                        contentDescription = "icon trailing",
+                        tint = iconTint
+                    )
+                }
+            }
+        }
+    )
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun BorderedTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    state: MutableState<String>? = null,
+    focusRequester: FocusRequester? = null,
+    inputType: KeyboardType = KeyboardType.Text,
+    imeAction: ImeAction = ImeAction.Default,
+    enabled: Boolean = true,
+    errorIcon: ImageVector = Icons.Filled.Error,
+    invalidState: MutableState<Boolean> = mutableStateOf(false),
+    labelStyle: TextStyle = MaterialTheme.typography.caption,
+    placeholderStyle: TextStyle = MaterialTheme.typography.caption.copy(
+        colorResource(id = R.color.colorHint)
+    ),
+    icon: ImageVector? = null,
+    iconTint: Color = MaterialTheme.colors.secondaryVariant,
+    isInvalid: Boolean = false,
+    isMandatory: Boolean = false,
+    onDone: (() -> Unit)? = null
+) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+    OutlinedTextField(
         value = state?.value ?: "",
         onValueChange = { state?.value = it },
         label = {
