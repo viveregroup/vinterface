@@ -34,14 +34,16 @@ fun SearchView(
     state: MutableState<String>,
     label: String,
     style: TextStyle = MaterialTheme.typography.body1,
-    onTextChanged: (String) -> Unit
+    onTextChanged: ((String) -> Unit)? = null,
+    onReset:(() -> Unit)? = null,
+    onSearch: ((String) -> Unit)? = null
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     TextField(
         value = state.value,
         onValueChange = { value ->
             state.value = value
-            onTextChanged(value)
+            onTextChanged?.invoke(value)
         },
         modifier = modifier,
         label = { BodyText(label, style = style) },
@@ -59,7 +61,8 @@ fun SearchView(
             if (state.value != "") {
                 IconButton(onClick = {
                     state.value = ""
-                    onTextChanged("")
+                    onTextChanged?.invoke("")
+                    onReset?.invoke()
                     keyboardController?.hide()
                 }) {
                     Icon(
@@ -77,7 +80,10 @@ fun SearchView(
             keyboardType = KeyboardType.Text
         ),
         keyboardActions = KeyboardActions(
-            onSearch = { keyboardController?.hide() }
+            onSearch = {
+                keyboardController?.hide()
+                onSearch?.invoke(state.value)
+            }
         ),
         singleLine = true,
         shape = RoundedCornerShape(10.dp), // The TextFiled has rounded corners top left and right by default

@@ -27,7 +27,7 @@
     <string name="later">Later</string>
     <string name="default_error_message">Something went wrong</string>
     <string name="loading_data">Loading data …</string>
-    <string name="no_data">No data yet</string>
+    <string name="no_data">No data available</string>
     <string name="default_date_format">dd-MM-yyyy</string>
     <string name="selection_maximum_warning">You have selected the maximum selection number</string>
     <string name="long_description_sample">Cras iaculis hendrerit purus, et gravida quam accumsan sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar ipsum nec ligula faucibus gravida. Cras malesuada metus sed tellus molestie, sed tincidunt ligula sagittis. Etiam nec facilisis metus. Donec pulvinar libero magna, quis aliquam dolor vehicula vel. Nulla et rutrum tortor. Pellentesque ex nisl, sodales in tempor at, dictum quis augue.</string>

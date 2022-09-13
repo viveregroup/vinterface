@@ -42,7 +42,6 @@ import kotlinx.coroutines.launch
  * Customizable multi-selection text field with custom data class type.
  * Use this if you want to custom the content.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <T> CustomMultiselectTextField(
     modifier: Modifier = Modifier,
@@ -68,13 +67,7 @@ fun <T> CustomMultiselectTextField(
 ) {
     val scope = rememberCoroutineScope()
     val isShowOption = remember { mutableStateOf(false) }
-    val bottomSheetState = rememberBottomSheetScaffoldState()
     val context = LocalContext.current
-    val toggleSheet: () -> Unit = {
-        scope.launch {
-            bottomSheetState.bottomSheetState.expand()
-        }
-    }
 
     val onSelected: (T) -> Unit = { selection ->
         scope.launch {
@@ -86,7 +79,6 @@ fun <T> CustomMultiselectTextField(
                     selections.value = list
                 }
             } else warningMax.toashShortly(context)
-            //toggleSheet()
         }
     }
 
@@ -154,7 +146,6 @@ fun <T> CustomMultiselectTextField(
  * Default custom multi-selection text field with custom data class type.
  * Use this if you want to have default content view.
  * */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <T> CustomMultiselectTextField(
     modifier: Modifier = Modifier,
@@ -383,6 +374,7 @@ fun <T> CustomMultiselectDialogSheet(
     searchHint: String = stringResource(id = R.string.search),
     onFiltered: ((String) -> List<T>)? = null,
     optionContent: @Composable (T) -> Unit,
+    onSearchReset:(()->Unit)? = null,
     onSelectedChanged: (T) -> Unit
 ) {
     val labelToShow = label.replace("*", "")
@@ -428,7 +420,8 @@ fun <T> CustomMultiselectDialogSheet(
                                         state = searchKey,
                                         label = searchHint,
                                         style = MaterialTheme.typography.caption,
-                                        onTextChanged = { onFiltered.invoke(it) }
+                                        onTextChanged = { onFiltered.invoke(it) },
+                                        onReset = onSearchReset
                                     )
                                     Spacer()
                                 }

@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AppBar(
     appBarBackground: Color = MaterialTheme.colors.primary,
-    appBarContentColor: Color = MaterialTheme.colors.onPrimary,
+    appBarContentColor: Color = MaterialTheme.colors.onBackground,
     barTitle: String,
     leadingIcon: ImageVector? = null,
     endTrailingIcon: ImageVector? = null,
@@ -44,10 +44,10 @@ fun AppBar(
             Icon(
                 imageVector = it,
                 contentDescription = "leading icon of $barTitle",
-                tint = MaterialTheme.colors.onPrimary,
+                tint = appBarContentColor,
                 modifier = Modifier.clickable { onLeadingIconClicked?.let { clicked -> clicked() } }
             )
-            Spacer(modifier = Modifier.size(eightDp))
+            androidx.compose.foundation.layout.Spacer(modifier = Modifier.size(eightDp))
         }
         Text(
             modifier = Modifier,
@@ -64,7 +64,7 @@ fun AppBar(
                     Icon(
                         imageVector = it,
                         contentDescription = it.toString(),
-                        tint = MaterialTheme.colors.onPrimary,
+                        tint = appBarContentColor,
                         modifier = Modifier
                             .clickable { onStartTrailingIconClicked?.let { clicked -> clicked() } }
                     )
@@ -74,7 +74,7 @@ fun AppBar(
                     Icon(
                         imageVector = it,
                         contentDescription = it.toString(),
-                        tint = MaterialTheme.colors.onPrimary,
+                        tint = appBarContentColor,
                         modifier = Modifier
                             .clickable { onEndTrailingIconClicked?.let { clicked -> clicked() } }
                     )
@@ -82,5 +82,4 @@ fun AppBar(
             }
         }
     }
-
 }

@@ -9,9 +9,14 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 import com.viverecollection.jetinferface.R
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -26,6 +31,13 @@ import java.util.*
  * Created by Annas Surdyanto on 15/09/21.
  *
  */
+
+@OptIn(ExperimentalCoilApi::class)
+@Composable
+fun String.asPainter(defaultResource: Int = R.drawable.default_image): Painter {
+    return if (this.isEmpty()) painterResource(id = defaultResource)
+    else rememberImagePainter(data = this)
+}
 
 fun File.asBase64(): String {
     return ByteArrayOutputStream().use { outputStream ->

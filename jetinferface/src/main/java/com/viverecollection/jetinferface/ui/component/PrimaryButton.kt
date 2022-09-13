@@ -2,10 +2,7 @@ package com.viverecollection.jetinferface.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -18,6 +15,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,11 +39,14 @@ fun PrimaryButton(
         color = Color.White,
         fontWeight = FontWeight.SemiBold
     ),
+    enabled: Boolean = true,
+    height: Int = 40,
     onClick: () -> Unit
 ) {
     Button(
         onClick = { onClick() },
-        modifier = modifier,
+        modifier = modifier.height(height.dp),
+        enabled = enabled,
         colors = buttonColors
     ) {
         Text(
@@ -67,11 +68,12 @@ fun UnselectedButton(
         color = Color.White,
         fontWeight = FontWeight.SemiBold
     ),
+    height: Int = 40,
     onClick: () -> Unit
 ) {
     Button(
         onClick = { onClick() },
-        modifier = modifier,
+        modifier = modifier.height(height.dp),
         colors = buttonColors
     ) {
         Row {
@@ -99,12 +101,15 @@ fun SecondaryButton(
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.background),
     text: String,
     textStyle: TextStyle = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.SemiBold),
+    enabled: Boolean = true,
+    height: Int = 40,
     onClick: () -> Unit,
 ) {
     Button(
         onClick = { onClick() },
-        modifier = modifier,
-        colors = buttonColors
+        modifier = modifier.height(height.dp),
+        colors = buttonColors,
+        enabled = enabled
     ) {
         Text(
             text = text,
@@ -119,12 +124,15 @@ fun CustomButton(
     text: String,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.background),
     textStyle: TextStyle = MaterialTheme.typography.body1,
+    enabled: Boolean = true,
+    height: Int = 40,
     onClick: () -> Unit
 ) {
     Button(
         onClick = { onClick() },
-        modifier = modifier,
-        colors = buttonColors
+        modifier = modifier.height(height.dp),
+        colors = buttonColors,
+        enabled = enabled
     ) {
         Text(
             text = text,
@@ -140,13 +148,16 @@ fun BorderedSecondaryButton(
     buttonColors: ButtonColors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.background),
     textStyle: TextStyle = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.SemiBold),
     border: BorderStroke = BorderStroke(1.dp, color = MaterialTheme.colors.primary),
+    height: Int = 40,
+    enabled: Boolean = true,
     onClick: () -> Unit
 ) {
     Button(
         onClick = { onClick() },
-        modifier = modifier,
+        modifier = modifier.height(height.dp),
         colors = buttonColors,
-        border = border
+        border = border,
+        enabled = enabled
     ) {
         Text(
             text = text,
@@ -190,6 +201,50 @@ fun TrailingIconButton(
                     contentDescription = label,
                     tint = iconTint,
                     modifier = iconModifier,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CustomLeadingIconButton(
+    modifier: Modifier = Modifier,
+    label: String,
+    style: TextStyle = MaterialTheme.typography.body2,
+    iconId: Int,
+    iconTint: Color = MaterialTheme.colors.primary,
+    shape: Shape = RoundedCornerShape(fourDp),
+    elevation: Dp = fourDp,
+    onClicked: (() -> Unit)? = null
+) {
+    val buttonModifier =
+        if (onClicked != null) modifier.clickable(onClick = onClicked)
+        else modifier
+    Card(
+        modifier = buttonModifier.padding(bottom = eightDp),
+        shape = shape,
+        elevation = elevation
+    ) {
+        Box(
+            modifier = Modifier.padding(twelveDp)
+        ) {
+            Row(
+                modifier = Modifier.align(Alignment.Center),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    painter = painterResource(id = iconId),
+                    contentDescription = label,
+                    tint = iconTint,
+                    modifier = Modifier.size(25.dp),
+                )
+                Spacer(size = eightDp)
+                Text(
+                    modifier = Modifier,
+                    text = label,
+                    style = style,
+                    textAlign = TextAlign.Center
                 )
             }
         }

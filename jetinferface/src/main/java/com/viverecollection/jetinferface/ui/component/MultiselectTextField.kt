@@ -68,13 +68,7 @@ fun MultiselectTextField(
 ) {
     val scope = rememberCoroutineScope()
     val isShowOption = remember { mutableStateOf(false) }
-    val bottomSheetState = rememberBottomSheetScaffoldState()
     val context = LocalContext.current
-    val toggleSheet: () -> Unit = {
-        scope.launch {
-            bottomSheetState.bottomSheetState.expand()
-        }
-    }
 
     val onSelected: (BaseOption) -> Unit = { selection ->
         scope.launch {
@@ -86,7 +80,6 @@ fun MultiselectTextField(
                     selections.value = list
                 }
             } else warningMax.toashShortly(context)
-            //toggleSheet()
         }
     }
 
@@ -151,7 +144,6 @@ fun MultiselectTextField(
                 modifier = Modifier
                     .matchParentSize()
                     .clickable { isShowOption.value = true }
-                //.clickable(onClick = toggleSheet)
             )
         }
 
@@ -385,6 +377,8 @@ fun MultiselectSheet(
     modifier: Modifier = Modifier,
     label: String,
     list: List<BaseOption>,
+    onSearchReset:(()->Unit)? = null,
+    onSearchTextChanged: ((String) -> Unit)? = null,
     onSelectedChanged: (BaseOption) -> Unit
 ) {
     val labelToShow = label.replace("*", "")
@@ -429,7 +423,8 @@ fun MultiselectSheet(
                         state = searchKey,
                         label = labelToShow,
                         style = MaterialTheme.typography.caption,
-                        onTextChanged = { }
+                        onTextChanged = onSearchTextChanged,
+                        onReset = onSearchReset
                     )
                     Spacer()
                 }
@@ -476,6 +471,8 @@ fun MultiselectDialogSheet(
     isShowDialog: MutableState<Boolean>,
     optionTitleStyle: TextStyle = MaterialTheme.typography.body2,
     optionDescriptionStyle: TextStyle = MaterialTheme.typography.caption,
+    onSearchReset:(()->Unit)? = null,
+    onSearchTextChanged: ((String) -> Unit)? = null,
     onSelectedChanged: (BaseOption) -> Unit
 ) {
     val labelToShow = label.replace("*", "")
@@ -524,7 +521,8 @@ fun MultiselectDialogSheet(
                                     state = searchKey,
                                     label = searchHint,
                                     style = MaterialTheme.typography.caption,
-                                    onTextChanged = { }
+                                    onReset = onSearchReset,
+                                    onTextChanged = onSearchTextChanged
                                 )
                                 Spacer()
                             }

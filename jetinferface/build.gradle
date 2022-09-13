@@ -34,6 +34,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
 }
 
@@ -75,7 +76,7 @@ afterEvaluate{
 
                 groupId = "com.github.viveregroup"
                 artifactId = "vivere-interface"
-                version = "0.0.6"
+                version = "0.0.8"
             }
         }
     }
