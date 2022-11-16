@@ -24,6 +24,8 @@ import com.viverecollection.jetinferface.R
  *
  */
 
+/**
+ * Using [BaseOption] */
 @Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun SelectableTextField(
@@ -51,7 +53,7 @@ fun SelectableTextField(
 
     Box(modifier = modifier) {
         if (useBorderStroke) BorderedClickableTextField(
-            modifier = modifier,
+            modifier = modifier.clickable { isShowOption.value = true },
             label = label,
             state = value,
             isInvalid = isInvalid,
@@ -62,7 +64,7 @@ fun SelectableTextField(
             iconTint = iconTint
         )
         else ClickableTextField(
-            modifier = modifier,
+            modifier = modifier.clickable { isShowOption.value = true },
             label = label,
             state = value,
             isInvalid = isInvalid,
@@ -71,10 +73,6 @@ fun SelectableTextField(
             icon = icon,
             errorIcon = errorIcon,
             iconTint = iconTint
-        )
-        Box(modifier = Modifier
-            .matchParentSize()
-            .clickable { isShowOption.value = true }
         )
     }
 
@@ -91,8 +89,79 @@ fun SelectableTextField(
     }
 }
 
+/**
+ * Using custom class*/
 @Composable
-@OptIn(ExperimentalMaterialApi::class)
+fun <T> SelectableTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    isInvalid: Boolean = false,
+    searchHint: String = stringResource(id = R.string.search),
+    selection: MutableState<T>,
+    options: List<T> = emptyList(),
+    invalidState: MutableState<Boolean> = mutableStateOf(false),
+    optionTitleStyle: TextStyle = MaterialTheme.typography.body2,
+    optionDescriptionStyle: TextStyle = MaterialTheme.typography.caption,
+    onFiltered: ((String) -> List<T>)? = null,
+    title: (T) -> String,
+    description: ((T) -> String)? = null,
+    icon: ImageVector = Icons.Default.ArrowDropDown,
+    errorIcon: ImageVector = Icons.Filled.Error,
+    iconTint: Color = MaterialTheme.colors.secondaryVariant,
+    isMandatory: Boolean = false,
+    useBorderStroke: Boolean = true
+) {
+    val isShowOption = remember { mutableStateOf(false) }
+    val onSelected: (T) -> Unit = { selected ->
+        selection.value = selected
+    }
+
+    Box(modifier = modifier) {
+        if (useBorderStroke) BorderedClickableTextField(
+            modifier = modifier.clickable { isShowOption.value = true },
+            label = label,
+            staticValue = title(selection.value),
+            isInvalid = isInvalid,
+            isMandatory = isMandatory,
+            invalidState = invalidState,
+            icon = icon,
+            errorIcon = errorIcon,
+            iconTint = iconTint
+        )
+        else ClickableTextField(
+            modifier = modifier.clickable { isShowOption.value = true },
+            label = label,
+            staticValue = title(selection.value),
+            isInvalid = isInvalid,
+            isMandatory = isMandatory,
+            invalidState = invalidState,
+            icon = icon,
+            errorIcon = errorIcon,
+            iconTint = iconTint
+        )
+    }
+
+    if (isShowOption.value) {
+        CustomMultiselectDialogSheet(
+            label = label,
+            list = options,
+            searchHint = searchHint,
+            onSelectedChanged = onSelected,
+            isShowDialog = isShowOption,
+            onFiltered = onFiltered,
+            optionContent = {
+                CustomOptionItemView(
+                    title = title(it),
+                    optionTitleStyle = optionTitleStyle,
+                    description = description?.let { selection -> selection(it) } ?: "",
+                    optionDescriptionStyle = optionDescriptionStyle
+                )
+            }
+        )
+    }
+}
+
+@Composable
 fun <T> CustomSelectableTextField(
     modifier: Modifier = Modifier,
     label: String,

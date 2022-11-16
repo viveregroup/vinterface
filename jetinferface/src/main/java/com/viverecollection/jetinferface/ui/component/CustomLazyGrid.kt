@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.viverecollection.jetinferface.ui.component.fourDp
 
 /**
  * Created by Annas Surdyanto on 15/06/22.

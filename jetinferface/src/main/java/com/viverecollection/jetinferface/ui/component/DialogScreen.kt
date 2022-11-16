@@ -1,11 +1,13 @@
 package com.viverecollection.jetinferface.ui.component
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viverecollection.jetinferface.R
@@ -17,6 +19,7 @@ import com.viverecollection.jetinferface.R
 
 @Composable
 fun DialogScreen(
+    modifier: Modifier = Modifier,
     title: String,
     message: String,
     positiveText: String = stringResource(R.string.yes),
@@ -27,11 +30,13 @@ fun DialogScreen(
 ) {
     if (isShowDialog.value) {
         AlertDialog(
+            modifier = modifier,
             onDismissRequest = { },
             title = { Text(text = title) },
             text = { Text(text = message) },
             confirmButton = {
                 PrimaryButton(
+                    modifier = Modifier.padding(bottom = eightDp),
                     text = positiveText,
                     onClick = {
                         isShowDialog.value = false
@@ -41,10 +46,14 @@ fun DialogScreen(
             },
             dismissButton =
             {
-                SecondaryButton(onClick = {
-                    isShowDialog.value = false
-                    onCancel?.let { it() }
-                }, text = negativeText)
+                SecondaryButton(
+                    modifier = Modifier.padding(bottom = eightDp),
+                    text = negativeText,
+                    onClick = {
+                        isShowDialog.value = false
+                        onCancel?.let { it() }
+                    }
+                )
             }
         )
     }
@@ -52,6 +61,7 @@ fun DialogScreen(
 
 @Composable
 fun OptionDialog(
+    modifier: Modifier = Modifier,
     title: String = "Confirmation",
     message: String,
     onConfirmed: (() -> Unit?)? = null,
@@ -59,6 +69,7 @@ fun OptionDialog(
 ) {
     val isShowDialog = remember { mutableStateOf(true) }
     DialogScreen(
+        modifier = modifier,
         title = title,
         message = message,
         onConfirmed = onConfirmed,
@@ -69,6 +80,7 @@ fun OptionDialog(
 
 @Composable
 fun RetryDialog(
+    modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.error_title),
     message: String,
     positiveText: String = stringResource(id = R.string.retry),
@@ -78,6 +90,7 @@ fun RetryDialog(
 ) {
     val isShowDialog = remember { mutableStateOf(true) }
     DialogScreen(
+        modifier = modifier,
         title = title,
         message = message,
         positiveText = positiveText,
@@ -90,6 +103,7 @@ fun RetryDialog(
 
 @Composable
 fun MultipleRetryDialog(
+    modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.error_title),
     message: String,
     positiveText: String = stringResource(id = R.string.retry),
@@ -99,6 +113,7 @@ fun MultipleRetryDialog(
     isShowDialog: MutableState<Boolean>
 ) {
     DialogScreen(
+        modifier = modifier,
         title = title,
         message = message,
         positiveText = positiveText,
@@ -111,6 +126,7 @@ fun MultipleRetryDialog(
 
 @Composable
 fun OkayErrorDialog(
+    modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.error_title),
     message: String,
     positiveText: String = stringResource(id = R.string.okay),
@@ -119,11 +135,13 @@ fun OkayErrorDialog(
     val isShowDialog = remember { mutableStateOf(true) }
     if (isShowDialog.value) {
         AlertDialog(
+            modifier = modifier,
             onDismissRequest = { },
             title = { Text(text = title) },
             text = { Text(text = message) },
             confirmButton = {
                 PrimaryButton(
+                    modifier = Modifier.padding(bottom = eightDp),
                     text = positiveText,
                     onClick = {
                         onConfirmed?.let { it() }
@@ -137,6 +155,7 @@ fun OkayErrorDialog(
 
 @Composable
 fun OkaySuccessDialog(
+    modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.success),
     message: String,
     positiveText: String = stringResource(id = R.string.okay),
@@ -145,11 +164,13 @@ fun OkaySuccessDialog(
     val isShowDialog = remember { mutableStateOf(true) }
     if (isShowDialog.value) {
         AlertDialog(
+            modifier = modifier,
             onDismissRequest = { },
             title = { Text(text = title) },
             text = { Text(text = message) },
             confirmButton = {
                 PrimaryButton(
+                    modifier = Modifier.padding(bottom = eightDp),
                     text = positiveText,
                     onClick = {
                         onConfirmed?.let { it() }
@@ -171,6 +192,6 @@ fun DialogScreenPreview() {
         negativeText = "No",
         onConfirmed = { },
         onCancel = {},
-        remember { mutableStateOf(false) }
+        isShowDialog = remember { mutableStateOf(false) }
     )
 }

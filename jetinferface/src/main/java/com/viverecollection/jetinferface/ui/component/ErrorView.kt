@@ -166,3 +166,35 @@ fun SurfaceEmptyContentView(
         }
     }
 }
+
+
+@Composable
+fun EmptyView(
+    modifier: Modifier = Modifier,
+    message: String,
+    onClick: (() -> Unit)? = null,
+    buttonLabel: String = stringResource(id = R.string.retry)
+) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(sixteenDp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            BodyText(
+                text = message,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(bottom = twelveDp)
+            )
+            if (onClick != null) PrimaryButton(
+                text = buttonLabel,
+                onClick = onClick,
+                modifier = Modifier.height(40.dp)
+            )
+        }
+    }
+}

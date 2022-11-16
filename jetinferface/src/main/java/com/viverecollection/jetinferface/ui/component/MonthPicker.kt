@@ -27,9 +27,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.viverecollection.jetinferface.R
 import com.viverecollection.jetinferface.data.Month
 import com.viverecollection.jetinferface.data.fiveYearsAround
-import com.viverecollection.jetinferface.R
 import com.viverecollection.jetinferface.util.separateMonthAndYear
 
 /**

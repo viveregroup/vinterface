@@ -68,3 +68,68 @@ fun RadioButtonView(
         )
     }
 }
+
+
+/**
+ * Created by Annas Surdyanto on 13/10/22.
+ *
+ * @param leftSelectionLabel is the left option text
+ * @param rightSelectionLabel is the right option text
+ * @param selection is the value from 0 to 2.
+ *
+ * - 0 = not selected
+ *
+ * - 1 = left selected
+ *
+ * - 2 = right selected
+ *
+ */
+
+@Composable
+fun RadioButtonOptionView(
+    modifier: Modifier = Modifier,
+    label: String,
+    leftSelectionLabel: String = stringResource(id = R.string.yes),
+    rightSelectionLabel: String = stringResource(id = R.string.no),
+    selection: MutableState<Int>,
+    textStyle: TextStyle = MaterialTheme.typography.caption,
+    onSelectionChanged: ((Int) -> Unit)? = null
+) {
+    val onSelected: (Int) -> Unit = {
+        selection.value = it
+        onSelectionChanged?.invoke(it)
+    }
+    Row(modifier = modifier) {
+        Text(
+            modifier = Modifier.align(Alignment.CenterVertically),
+            text = label,
+            style = textStyle
+        )
+        Spacer()
+        RadioButton(
+            selected = selection.value == 1,
+            onClick = { onSelected(1) }
+        )
+        Text(
+            text = leftSelectionLabel,
+            modifier = Modifier
+                .clickable(onClick = { onSelected(1) })
+                .padding(start = 4.dp)
+                .align(Alignment.CenterVertically),
+            style = textStyle
+        )
+        Spacer()
+        RadioButton(
+            selected = selection.value == 2,
+            onClick = { onSelected(2) }
+        )
+        Text(
+            text = rightSelectionLabel,
+            modifier = Modifier
+                .clickable(onClick = { onSelected(2) })
+                .padding(start = 4.dp)
+                .align(Alignment.CenterVertically),
+            style = textStyle
+        )
+    }
+}

@@ -42,8 +42,7 @@ fun ExpandableHeading(
                 .constrainAs(textRef) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
-                }
-                .clickable { showingState.value = !showingState.value },
+                },
             style = headingStyle
         )
         val contactArrow =
@@ -94,8 +93,7 @@ fun ExpandableTitle(
                 .constrainAs(textRef) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
-                }
-                .clickable { showingState.value = !showingState.value },
+                },
             style = headingStyle
         )
 
@@ -149,15 +147,13 @@ fun ExpandableLabel(
     val showingState = remember { mutableStateOf(defaultState) }
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         val (textRef, descRef, iconRef, contentRef) = createRefs()
-        val style = MaterialTheme.typography.body2
         BodyText(
             text = label,
             modifier = Modifier
                 .constrainAs(textRef) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
-                }
-                .clickable { showingState.value = !showingState.value },
+                },
             style = headingStyle
         )
 

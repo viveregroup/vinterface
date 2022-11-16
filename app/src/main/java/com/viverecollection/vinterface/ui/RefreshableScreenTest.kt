@@ -53,6 +53,7 @@ fun RefreshableScreenTest() {
     val customSelection = remember { mutableStateOf(OptionSample.init) }
     val multiSelection = remember { mutableStateOf(emptyList<BaseOption>()) }
     val selection = remember { mutableStateOf(BaseOption.init) }
+    val testDialog = remember { mutableStateOf(false) }
     val customTypeOptionList = remember { mutableStateOf(OptionSample.optionSampleList()) }
     val refresh: () -> Unit = {
         scope.launch {
@@ -65,7 +66,7 @@ fun RefreshableScreenTest() {
     val submit: () -> Unit = {
         submissionLoading.value = true
         scope.launch {
-            delay(2000)
+            delay(1000)
             invalidState.value =
                 textField.value.isEmpty() && password.value.isEmpty() && currency.value.isEmpty()
             if (!invalidState.value) successSubmit.value = true
@@ -75,10 +76,19 @@ fun RefreshableScreenTest() {
 
 
     val removeDialogSuccess: () -> Unit = { successSubmit.value = false }
+    val removeTestDialog: () -> Unit = { testDialog.value = false }
     val context = LocalContext.current
 
     if (successSubmit.value) {
         OkaySuccessDialog(message = "Submit success", onConfirmed = removeDialogSuccess)
+    }
+
+    if (testDialog.value) {
+        RetryDialog(
+            message = "Test Dialog",
+            onConfirmed = removeTestDialog,
+            onCancel = removeTestDialog
+        )
     }
 
     RefreshableScreenContainer(
@@ -178,8 +188,8 @@ fun RefreshableScreenTest() {
                             selection = customSelection,
                             isMandatory = true,
                             invalidState = invalidState,
-                            onFiltered = {customTypeOptionList.value.filterItems(it)},
-                            title = {it.title},
+                            onFiltered = { customTypeOptionList.value.filterItems(it) },
+                            title = { it.title },
                             useBorderStroke = false,
                             options = customTypeOptionList.value
                         )
@@ -491,6 +501,12 @@ fun RefreshableScreenTest() {
                         BorderedSecondaryButton(
                             text = "Border Button",
                             onClick = { "Button Clicked".toashShortly(context) },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        BorderedSecondaryButton(
+                            text = "Test Dialog",
+                            onClick = { testDialog.value = true },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }

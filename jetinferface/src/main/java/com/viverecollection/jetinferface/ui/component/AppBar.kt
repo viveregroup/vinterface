@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppBar(
+    modifier: Modifier = Modifier,
     appBarBackground: Color = MaterialTheme.colors.primary,
     appBarContentColor: Color = MaterialTheme.colors.onBackground,
     barTitle: String,
@@ -36,7 +37,7 @@ fun AppBar(
         backgroundColor = appBarBackground,
         contentColor = appBarContentColor,
         elevation = 0.dp,
-        modifier = Modifier
+        modifier = modifier
             .background(color = appBarBackground)
             .padding(start = 16.dp, end = 16.dp)
     ) {
