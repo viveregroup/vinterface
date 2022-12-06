@@ -2,7 +2,6 @@ package com.viverecollection.jetinferface.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -16,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import com.viverecollection.jetinferface.data.BaseOption
 import com.viverecollection.jetinferface.R
+import com.viverecollection.jetinferface.data.BaseOption
 
 /**
  * Created by Annas Surdyanto on 30/05/22.
@@ -27,7 +26,6 @@ import com.viverecollection.jetinferface.R
 /**
  * Using [BaseOption] */
 @Composable
-@OptIn(ExperimentalMaterialApi::class)
 fun SelectableTextField(
     modifier: Modifier = Modifier,
     label: String,
@@ -105,6 +103,7 @@ fun <T> SelectableTextField(
     onFiltered: ((String) -> List<T>)? = null,
     title: (T) -> String,
     description: ((T) -> String)? = null,
+    onSelectionChanged: ((T) -> Unit)? = null,
     icon: ImageVector = Icons.Default.ArrowDropDown,
     errorIcon: ImageVector = Icons.Filled.Error,
     iconTint: Color = MaterialTheme.colors.secondaryVariant,
@@ -114,6 +113,7 @@ fun <T> SelectableTextField(
     val isShowOption = remember { mutableStateOf(false) }
     val onSelected: (T) -> Unit = { selected ->
         selection.value = selected
+        onSelectionChanged?.invoke(selected)
     }
 
     Box(modifier = modifier) {
@@ -174,6 +174,7 @@ fun <T> CustomSelectableTextField(
     optionDescriptionStyle: TextStyle = MaterialTheme.typography.caption,
     onFiltered: ((String) -> List<T>)? = null,
     title: (T) -> String,
+    onSelectionChanged: ((T) -> Unit)? = null,
     icon: ImageVector = Icons.Default.ArrowDropDown,
     errorIcon: ImageVector = Icons.Filled.Error,
     iconTint: Color = MaterialTheme.colors.secondaryVariant,
@@ -185,6 +186,7 @@ fun <T> CustomSelectableTextField(
     val onSelected: (T) -> Unit = { selected ->
         selection.value = selected
         value.value = title(selected)
+        onSelectionChanged?.invoke(selected)
     }
 
     Box(modifier = modifier) {

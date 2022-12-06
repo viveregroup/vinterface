@@ -38,7 +38,8 @@ fun <T> SelectableBottomSheetView(
     barLabel: String,
     optionList: List<T>,
     title: (T) -> String,
-    icon: ((T) -> ImageVector)? = null,
+    itemIcon: ((T) -> ImageVector)? = null,
+    labelIcon: ImageVector? = null,
     drawableResource: ((T) -> Int)? = null,
     searchHint: String = stringResource(id = R.string.search),
     onFiltered: ((String) -> List<T>)? = null,
@@ -60,13 +61,14 @@ fun <T> SelectableBottomSheetView(
                 modifier = Modifier.padding(vertical = twelveDp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.Engineering,
-                    contentDescription = labelToShow,
-                    modifier = modifier.padding(eightDp),
-                    tint = MaterialTheme.colors.primary,
-                )
-
+                labelIcon?.let {
+                    Icon(
+                        imageVector = it,
+                        contentDescription = labelToShow,
+                        modifier = modifier.padding(eightDp),
+                        tint = MaterialTheme.colors.primary,
+                    )
+                }
                 Text(
                     text = barLabel,
                     style = MaterialTheme.typography.body1.copy(
@@ -114,7 +116,7 @@ fun <T> SelectableBottomSheetView(
                             modifier = Modifier.padding(vertical = eightDp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            icon?.invoke(it)?.let {
+                            itemIcon?.invoke(it)?.let {
                                 Icon(
                                     imageVector = it,
                                     contentDescription = barLabel,
@@ -127,7 +129,9 @@ fun <T> SelectableBottomSheetView(
                                 Image(
                                     painter = painterResource(id = it),
                                     contentDescription = barLabel,
-                                    modifier = modifier.padding(eightDp).size(twentyDp),
+                                    modifier = modifier
+                                        .padding(eightDp)
+                                        .size(twentyDp),
                                 )
                             }
 

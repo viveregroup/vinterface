@@ -76,7 +76,7 @@ afterEvaluate{
 
                 groupId = "com.github.viveregroup"
                 artifactId = "vivere-interface"
-                version = "0.0.9"
+                version = "0.1.0"
             }
         }
     }

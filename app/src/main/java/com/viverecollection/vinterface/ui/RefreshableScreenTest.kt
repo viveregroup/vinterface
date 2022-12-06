@@ -7,10 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -55,6 +52,7 @@ fun RefreshableScreenTest() {
     val selection = remember { mutableStateOf(BaseOption.init) }
     val testDialog = remember { mutableStateOf(false) }
     val customTypeOptionList = remember { mutableStateOf(OptionSample.optionSampleList()) }
+    val snapshotList = remember { mutableStateListOf<OptionSample>() }
     val refresh: () -> Unit = {
         scope.launch {
             loadingState.value = true
@@ -298,6 +296,27 @@ fun RefreshableScreenTest() {
                             )
                         }
                         Spacer()
+                    }
+
+                    item {
+                        SnapshotListTextField(
+                            label = "Snapshot Column",
+                            selections = snapshotList,
+                            title = { it.title },
+                            description = { "" },
+                            options = customTypeOptionList.value
+                        )
+                        Spacer()
+                    }
+                    item {
+                        SnapshotListTextField(
+                            label = "Snapshot Row",
+                            selections = snapshotList,
+                            title = {it.title},
+                            description = { it.description },
+                            options = customTypeOptionList.value,
+                            useColumnScopeArrangement = false
+                        )
                     }
 
                     item {
