@@ -40,7 +40,8 @@ fun SelectableTextField(
     errorIcon: ImageVector = Icons.Filled.Error,
     iconTint: Color = MaterialTheme.colors.secondaryVariant,
     isMandatory: Boolean = false,
-    useBorderStroke: Boolean = true
+    useBorderStroke: Boolean = true,
+    isEnable: Boolean = true
 ) {
     val isShowOption = remember { mutableStateOf(false) }
     val value = remember { mutableStateOf(selection.value.name) }
@@ -50,17 +51,33 @@ fun SelectableTextField(
     }
 
     Box(modifier = modifier) {
-        if (useBorderStroke) BorderedClickableTextField(
-            modifier = modifier.clickable { isShowOption.value = true },
-            label = label,
-            state = value,
-            isInvalid = isInvalid,
-            isMandatory = isMandatory,
-            invalidState = invalidState,
-            icon = icon,
-            errorIcon = errorIcon,
-            iconTint = iconTint
-        )
+        if (useBorderStroke) {
+            if (isEnable) {
+                BorderedClickableTextField(
+                    modifier = modifier.clickable { isShowOption.value = true },
+                    label = label,
+                    state = value,
+                    isInvalid = isInvalid,
+                    isMandatory = isMandatory,
+                    invalidState = invalidState,
+                    icon = icon,
+                    errorIcon = errorIcon,
+                    iconTint = iconTint
+                )
+            } else {
+                BorderedTextField(
+                    modifier = modifier.clickable { isShowOption.value = true },
+                    label = label,
+                    state = value,
+                    isInvalid = isInvalid,
+                    isMandatory = isMandatory,
+                    invalidState = invalidState,
+                    icon = icon,
+                    errorIcon = errorIcon,
+                    iconTint = iconTint
+                )
+            }
+        }
         else ClickableTextField(
             modifier = modifier.clickable { isShowOption.value = true },
             label = label,
