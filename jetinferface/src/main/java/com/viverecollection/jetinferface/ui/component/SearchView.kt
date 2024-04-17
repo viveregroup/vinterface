@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
  * https://johncodeos.com/how-to-add-search-in-list-with-jetpack-compose/
  *
  */
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchView(
     modifier: Modifier = Modifier,
