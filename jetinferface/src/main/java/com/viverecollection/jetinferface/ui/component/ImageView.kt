@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.runtime.*
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.skydoves.landscapist.glide.GlideImage
 import com.viverecollection.jetinferface.R
@@ -52,7 +54,7 @@ fun CircleImageView(
     val showImage = remember { mutableStateOf(false) }
     if (isClickable) Image(
         painter = if (imageUrl.isEmpty()) painterResource(id = R.drawable.default_image)
-        else rememberImagePainter(data = imageUrl),
+        else rememberAsyncImagePainter(model = imageUrl),
         contentDescription = "profilePhoto",
         modifier = modifier
             .clip(shape = shape)
@@ -62,7 +64,7 @@ fun CircleImageView(
     )
     else Image(
         painter = if (imageUrl.isEmpty()) painterResource(id = R.drawable.default_image)
-        else rememberImagePainter(data = imageUrl),
+        else rememberAsyncImagePainter(model = imageUrl),
         contentDescription = "profilePhoto",
         modifier = modifier
             .clip(shape = shape)
@@ -116,7 +118,7 @@ fun ImageSheetItem(image: String) {
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
+@SuppressLint("UnrememberedMutableState", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun DownloadableImageView(
     fileName: String, url: String,
@@ -152,7 +154,7 @@ fun DownloadableImageView(
                 onEndTrailingIconClicked = download,
                 appBarBackground = Color.Black,
                 appBarContentColor = Color.White,
-                leadingIcon = Icons.Default.ArrowBack,
+                leadingIcon = Icons.AutoMirrored.Filled.ArrowBack,
                 onLeadingIconClicked = dismiss
             )
         },

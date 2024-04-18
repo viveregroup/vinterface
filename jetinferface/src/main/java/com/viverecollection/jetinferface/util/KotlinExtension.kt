@@ -3,6 +3,7 @@ package com.viverecollection.jetinferface.util
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.todayAt
+import kotlinx.datetime.todayIn
 
 /**
  * Created by Annas Surdyanto on 16/12/21.
@@ -30,7 +31,7 @@ fun String.separateMonthAndYear(): List<String> {
         month = this.substringBefore("-")
         year = this.substringAfter("-")
     } else {
-        val currentTime = Clock.System.todayAt(TimeZone.currentSystemDefault())
+        val currentTime = Clock.System.todayIn(TimeZone.currentSystemDefault())
         month = currentTime.monthNumber.toString()
         if (month.length == 1) month = "0$month"
         year = currentTime.year.toString()
