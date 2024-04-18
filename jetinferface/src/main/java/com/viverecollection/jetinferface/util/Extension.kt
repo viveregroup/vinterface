@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.viverecollection.jetinferface.R
 import java.io.ByteArrayOutputStream
@@ -36,7 +37,7 @@ import java.util.*
 @Composable
 fun String.asPainter(defaultResource: Int = R.drawable.default_image): Painter {
     return if (this.isEmpty()) painterResource(id = defaultResource)
-    else rememberImagePainter(data = this)
+    else rememberAsyncImagePainter(model = this)
 }
 
 fun File.asBase64(): String {
